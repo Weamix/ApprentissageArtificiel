@@ -21,6 +21,7 @@ def learning_linear_regression(x, y):
 
 
 def rss(model, x, y):
+    # ce que ça fait : pour tous les points, somme de l'écart en vraies valeurs (y) et valeurs prédites (f(x)) au carré
     print('Residual sum of squares : %.2f' % np.sum((y - model.predict(x)) ** 2))
     return np.sum((model.predict(x) - y) ** 2)
 
@@ -58,4 +59,4 @@ if __name__ == '__main__':
     rss(model, x_test, y_test)
     # erreur en généralisaiton, à quel point on est bon dans le monde réel.
 
-    #Biais : modèle trop simple -> il faudrait avoir d'autres params comme le type d'ingrédient
+    # biais : modèle trop simple -> il faudrait avoir d'autres params comme le type d'ingrédient

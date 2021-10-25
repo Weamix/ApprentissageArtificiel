@@ -57,3 +57,5 @@ if __name__ == '__main__':
     print("XSS x_test / y_test :")
     rss(model, x_test, y_test)
     # erreur en généralisaiton, à quel point on est bon dans le monde réel.
+
+    #Biais : modèle trop simple -> il faudrait avoir d'autres params comme le type d'ingrédient

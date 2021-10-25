@@ -15,7 +15,17 @@ def load_data_test():
     return x, y
 
 
-def show_data(x, y):
+def learning_linear_regression(x, y):
+    reg = LinearRegression().fit(x, y)
+    return reg
+
+
+def rss(model, x, y):
+    print('Residual sum of squares : %.2f' % np.sum((y - model.predict(x)) ** 2))
+    return np.sum((model.predict(x) - y) ** 2)
+
+
+def show_data(model, x, y, points_x):
     f, ax = plt.subplots(1)
     ax.scatter(x, y, color="k")
     ax.set_ylim(ymin=0)
@@ -27,20 +37,23 @@ def show_data(x, y):
     plt.xlabel("Prices in euros")
     plt.ylabel("Sizes in cms")
 
-    reg = LinearRegression().fit(x, y)
-    points_x = np.arange(0.0, 25.0, 0.1).reshape(-1, 1)
-    plt.plot(points_x, reg.predict(points_x))
-
-    print(reg.score(x, y))
-    print(reg.coef_)
-    print(reg.intercept_)
+    plt.plot(points_x, model.predict(points_x))
 
     plt.show()
 
 
 if __name__ == '__main__':
-    x, y = load_data()
+    # JAMAIS FIT (apprendre) AVEC DES DONNEES DE TEST
+    x_train, y_train = load_data()
     x_test, y_test = load_data_test()
-    show_data(x, y)
-    #show_data(x_test, y_test)
 
+    points_x = np.arange(0.0, 25.0, 0.1).reshape(-1, 1)
+    model = learning_linear_regression(x_train, y_train)
+    show_data(model, x_train, y_train, points_x)
+
+    print("XSS x_train / y_train :")
+    rss(model, x_train, y_train)
+
+    print("XSS x_test / y_test :")
+    rss(model, x_test, y_test)
+    # erreur en généralisaiton, à quel point on est bon dans le monde réel.

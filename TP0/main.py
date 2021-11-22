@@ -52,10 +52,10 @@ if __name__ == '__main__':
     model = learning_linear_regression(x_train, y_train)
     show_data(model, x_train, y_train, points_x)
 
-    print("XSS x_train / y_train :")
+    print("RSS x_train / y_train :")
     rss(model, x_train, y_train)
 
-    print("XSS x_test / y_test :")
+    print("RSS x_test / y_test :")
     rss(model, x_test, y_test)
     # erreur en généralisaiton, à quel point on est bon dans le monde réel.
 

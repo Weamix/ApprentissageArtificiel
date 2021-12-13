@@ -1,8 +1,8 @@
-import numpy as np
 import matplotlib.pyplot as plt
 import pandas as p
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import confusion_matrix
 import seaborn as sns
 
 
@@ -23,7 +23,11 @@ def load_data():
 
     # Comment sont organisés les exemples ? Ordonnées d'où l'importance du random split
 
-    train, test = train_test_split(dataframe,test_size=0.3)
+    return dataframe
+
+
+def split_data(data):
+    train, test = train_test_split(data, test_size=0.3)
     x_train = train
     y_train = train['Species']
     del x_train['Id']
@@ -34,23 +38,35 @@ def load_data():
     del x_test['Id']
     del x_test['Species']
 
-    #x_train ,y_train, x_test, y_test = train_test_split(data_x,data_y,test_size=0.3)
-    return dataframe
+    print(x_test.shape)
+    print(y_test.shape)
+
+    # x_train ,y_train, x_test, y_test = train_test_split(data_x,data_y,test_size=0.3)
+    return x_train, y_train, x_test, y_test
 
 
-def KNeighborsClassifier(n_neighbors=3):
-    knn = KNeighborsClassifier(n_neighbors=n_neighbors)
-    knn.fit(x_train, y_train)
-    y_pred = knn.predict(x_test)
-    return knn, y_pred
+def create_model(classifier, x, y):
+    classifier.fit(x, y)
+    return classifier
 
 
-def plotData(data):
+def display_score(classifier, x_train, y_train, x_test, y_test):
+    print("Train score : ", classifier.score(x_train, y_train))
+    print("Test score : ", classifier.score(x_test, y_test))
+    y_pred = classifier.predict(x_test)
+    print(confusion_matrix(y_test, y_pred))
+
+
+def plot_data(data):
     sns.set_style("whitegrid")
-    sns.pairplot(data,hue="Species")
+    sns.pairplot(data, hue="Species")
     plt.show()
 
 
 if __name__ == '__main__':
-    dataframe = load_data()
-    plotData(dataframe)
+    data = load_data()
+    # plot_data(data)
+
+    x_train, y_train, x_test, y_test = split_data(data)
+    classifier = create_model(KNeighborsClassifier(), x_train, y_train)
+    display_score(classifier, x_train, y_train, x_test, y_test)

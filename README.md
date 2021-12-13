@@ -13,6 +13,7 @@ TP1 : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp1.
 
 TP2 : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp2.pdf
 
+TP3 : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp3.pdf
 
 Apprentissage automatique :
 

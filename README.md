@@ -39,9 +39,19 @@ Surapprentissage :
     On est bon avec nos images mais pas avec un nouveau jeu de donnée
     On ne connait pas le "concept"
 
+    Pas bon en généralisation
+
 Pattern pour l'année :
 
     x,y 
     x_train, y_train => fit
     x_test, y_test => score (mesure de perf)
     Surtout pas fit le test
+
+Apprentissage supervisé :
+
+    Trouver un modèle qui apprend à partir des données
+    y=f(x)
+    x des données de chien et chat
+    y des étiquettes (tags) de chiens ou chats
+    f notre modèle (algo) qui doit faire matcher x et y

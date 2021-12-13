@@ -3,13 +3,14 @@ import matplotlib.pyplot as plt
 import pandas as p
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+import seaborn as sns
 
 
 def load_data():
     dataframe = p.read_csv("iris.csv")
 
     # Combien d'exemples : 150
-    # Combien de classes (species) : 6
+    # Combien de classes (species) : 3 classes
     # Combien de caractéristiques descriptives ? De quels types ? 4 : SepalLengthCm , SepalWidthCm , PetalLengthCm, PetalWidthCm
 
     print("shape : ", dataframe.shape)
@@ -34,10 +35,22 @@ def load_data():
     del x_test['Species']
 
     #x_train ,y_train, x_test, y_test = train_test_split(data_x,data_y,test_size=0.3)
+    return dataframe
 
-    neigh = KNeighborsClassifier(n_neighbors=3)
-    neigh.fit(x_train,y_train)
 
-    
+def KNeighborsClassifier(n_neighbors=3):
+    knn = KNeighborsClassifier(n_neighbors=n_neighbors)
+    knn.fit(x_train, y_train)
+    y_pred = knn.predict(x_test)
+    return knn, y_pred
+
+
+def plotData(data):
+    sns.set_style("whitegrid")
+    sns.pairplot(data,hue="Species")
+    plt.show()
+
+
 if __name__ == '__main__':
-    load_data()
+    dataframe = load_data()
+    plotData(dataframe)

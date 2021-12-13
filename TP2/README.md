@@ -4,4 +4,4 @@
 ![img.png](img.png)
 
 ### Pair plot data auto
-![img_1.png](img_1.png)
+![img_2.png](img_2.png)

@@ -6,7 +6,7 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 
 
-def load_data():
+def load_data_iris():
     dataframe = p.read_csv("iris.csv")
 
     # Combien d'exemples : 150
@@ -22,11 +22,24 @@ def load_data():
     print("value_counts : ", dataframe['Species'].value_counts())
 
     # Comment sont organisés les exemples ? Ordonnées d'où l'importance du random split
+    del dataframe['name']
+    return dataframe
+
+
+def load_data_auto():
+    dataframe = p.read_csv("auto-mpg.data.csv")
+
+    print("shape : ", dataframe.shape)
+    print("info : ", dataframe.info())
+    print("describe : ", dataframe.describe())
+    print("head : ", dataframe.head())
+    print("value_counts : ", dataframe['cylinders'].value_counts())
+
 
     return dataframe
 
 
-def split_data(data):
+def split_data_iris(data):
     train, test = train_test_split(data, test_size=0.3)
     x_train = train
     y_train = train['Species']
@@ -57,16 +70,22 @@ def display_score(classifier, x_train, y_train, x_test, y_test):
     print(confusion_matrix(y_test, y_pred))
 
 
-def plot_data(data):
+def plot_data(data, c):
     sns.set_style("whitegrid")
-    sns.pairplot(data, hue="Species")
+    sns.pairplot(data, hue=c)
     plt.show()
 
 
 if __name__ == '__main__':
-    data = load_data()
-    # plot_data(data)
-
-    x_train, y_train, x_test, y_test = split_data(data)
+    '''Commented part 1 TP2 : Iris
+    
+    data_iris = load_data_iris()
+    plot_data(data_iris, "Species")
+    x_train, y_train, x_test, y_test = split_data_iris(data_iris)
     classifier = create_model(KNeighborsClassifier(), x_train, y_train)
     display_score(classifier, x_train, y_train, x_test, y_test)
+    
+    '''
+
+    data_auto = load_data_auto()
+    plot_data(data_auto, "cylinders")

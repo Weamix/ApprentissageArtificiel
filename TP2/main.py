@@ -93,6 +93,7 @@ if __name__ == '__main__':
     regressor = create_model(KNeighborsRegressor(), x_train, y_train)
     display_score_regressor(regressor, x_train, y_train, x_test, y_test)
 
+    #normaliser les données pour ne pas avoir des biais sur les poids du type 3000 vs 1.5
     print("After rescaling")
     ss = StandardScaler()
     x_train = ss.fit_transform(x_train)

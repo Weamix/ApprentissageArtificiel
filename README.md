@@ -2,7 +2,7 @@
 
 ## Vitse Maxime (I2L)
 
-#### notation : 1tp noté (voir 2) + controle mi parcours (connaissances cours ) + examen machine
+#### notation : 1tp noté (voir 2) + controle mi parcours (connaissances cours) + examen machine
 
 
 Cours : https://www-lisic.univ-littoral.fr/~teytaud/apprentissage.html

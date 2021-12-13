@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as p
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 
@@ -22,7 +23,6 @@ def load_data_iris():
     print("value_counts : ", dataframe['Species'].value_counts())
 
     # Comment sont organisés les exemples ? Ordonnées d'où l'importance du random split
-    del dataframe['name']
     return dataframe
 
 
@@ -35,7 +35,7 @@ def load_data_auto():
     print("head : ", dataframe.head())
     print("value_counts : ", dataframe['cylinders'].value_counts())
 
-
+    del dataframe['name']
     return dataframe
 
 
@@ -58,9 +58,25 @@ def split_data_iris(data):
     return x_train, y_train, x_test, y_test
 
 
-def create_model(classifier, x, y):
-    classifier.fit(x, y)
-    return classifier
+def split_data_auto(data):
+    train, test = train_test_split(data, test_size=0.3)
+    x_train = train
+    y_train = train['mpg']
+    del x_train['mpg']
+
+    x_test = test
+    y_test = test['mpg']
+    del x_test['mpg']
+
+    print(x_test.shape)
+    print(y_test.shape)
+
+    return x_train, y_train, x_test, y_test
+
+
+def create_model(model, x, y):
+    model.fit(x, y)
+    return model
 
 
 def display_score(classifier, x_train, y_train, x_test, y_test):
@@ -87,5 +103,12 @@ if __name__ == '__main__':
     
     '''
 
+    # 392 exemples
+    # 0 classes car on est en régression
+    # 7 caractéristiques avec y=mpg
+
     data_auto = load_data_auto()
-    plot_data(data_auto, "cylinders")
+    plot_data(data_auto, "mpg")
+    x_train, y_train, x_test, y_test = split_data_auto(data_auto)
+    regressor = create_model(KNeighborsRegressor(), x_train, y_train)
+

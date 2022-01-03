@@ -32,9 +32,8 @@ def tree_glass():
     # classifier = tree.DecisionTreeClassifier(min_impurity_decrease=0.02, max_depth=10)
     # classifier = tree.DecisionTreeClassifier(criterion='entropy', min_impurity_decrease=0.00, max_depth=8)
     # classifier = tree.DecisionTreeClassifier(criterion='entropy', max_depth=8)
-    # classifier = tree.DecisionTreeClassifier(min_impurity_decrease=0.02, max_depth=8)
 
-    classifier = tree.DecisionTreeClassifier(criterion='entropy',max_depth=6)
+    classifier = tree.DecisionTreeClassifier(min_impurity_decrease=0.02, max_depth=8)
     classifier.fit(x_train, y_train)
     tree.export_graphviz(classifier, out_file='tree.dot', feature_names=['refractive index','Sodium', 'Magnesium', 'Aluminium', 'Silicon', 'Potassium', 'Calcium', 'Barium', 'Iron'])
     display_score_classifier(classifier, x_train, y_train, x_test, y_test)

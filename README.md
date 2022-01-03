@@ -11,9 +11,9 @@ TP0 : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp0.
 
 TP1 : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp1.pdf
 
-TP2 : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp2.pdf
+TP2 - k plus proches voisins (linéraire et régression): https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp2.pdf
 
-TP3 : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp3.pdf
+TP3 - arbres de décision (classification et régression) : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp3.pdf
 
 Apprentissage automatique :
 

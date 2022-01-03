@@ -87,7 +87,7 @@ if __name__ == '__main__':
         7 caractéristiques avec y=mp
     '''
 
-    data_auto = load_data("auto-mpg.data.csv", "mpg", "name")
+    data_auto = load_data("csv/auto-mpg.data.csv", "mpg", "name")
     #plot_data(data_auto, "mpg")
     x_train, y_train, x_test, y_test = split_data(data_auto, "mpg")
     regressor = create_model(KNeighborsRegressor(), x_train, y_train)

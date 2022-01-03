@@ -39,6 +39,19 @@ def tree_glass():
     display_score_classifier(classifier, x_train, y_train, x_test, y_test)
 
 
+def tree_wine():
+    data = pd.read_csv("winequality-red.csv")
+    analyze(data, 'quality')
+
+    x_train, y_train, x_test, y_test = split_data(data, 'quality')
+
+    classifier = tree.DecisionTreeRegressor(min_impurity_decrease=0.02, max_depth=8)
+    classifier.fit(x_train, y_train)
+    tree.export_graphviz(classifier, out_file='tree.dot', feature_names=['fixed acidity','volatile acidity','citric acid','residual sugar','chlorides',
+                                                                         'free sulfur dioxide','total sulfur dioxide','density','pH','sulphates','alcohol'])
+    #display_score_classifier(classifier, x_train, y_train, x_test, y_test)
+
+
 def analyze(data, type):
     print(data.shape)
     print(data.info())
@@ -81,4 +94,5 @@ def display_score_classifier(classifier, x_train, y_train, x_test, y_test):
 
 if __name__ == '__main__':
     #tree_barbecue()
-    tree_glass()
+    #tree_glass()
+    tree_wine()

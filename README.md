@@ -28,7 +28,7 @@ Régression :
 
 Linéaire : 
 
-    un programme qui peut apprendre qu'une droite
+    un programme qui peut apprendre qu'une droite ou un hyper plan (droite en plein de dimensions)
 
 TP1 : limité à des droites (modèle linéaire)
 

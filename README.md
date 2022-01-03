@@ -7,13 +7,15 @@
 
 Cours : https://www-lisic.univ-littoral.fr/~teytaud/apprentissage.html
 
-TP0 : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp0.pdf
+TP0 - regression linéaire : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp0.pdf
 
-TP1 : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp1.pdf
+TP1 - regression polynomiale : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp1.pdf
 
-TP2 - k plus proches voisins (linéraire et régression): https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp2.pdf
+TP2 - k plus proches voisins (classification et régression): https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp2.pdf
 
 TP3 - arbres de décision (classification et régression) : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp3.pdf
+
+TP4 - perceptron : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/perceptronTP.pdf
 
 Apprentissage automatique :
 

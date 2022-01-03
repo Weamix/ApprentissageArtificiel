@@ -1,7 +1,6 @@
 import pandas as pd
 from sklearn import tree
-import graphviz
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, r2_score, mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 
 
@@ -49,7 +48,7 @@ def tree_wine():
     classifier.fit(x_train, y_train)
     tree.export_graphviz(classifier, out_file='tree.dot', feature_names=['fixed acidity','volatile acidity','citric acid','residual sugar','chlorides',
                                                                          'free sulfur dioxide','total sulfur dioxide','density','pH','sulphates','alcohol'])
-    #display_score_classifier(classifier, x_train, y_train, x_test, y_test)
+    display_score_regressor(classifier, x_train, y_train, x_test, y_test)
 
 
 def analyze(data, type):
@@ -91,6 +90,15 @@ def display_score_classifier(classifier, x_train, y_train, x_test, y_test):
     y_pred = classifier.predict(x_test)
     print(confusion_matrix(y_test, y_pred))
 
+
+def display_score_regressor(regressor, x_train, y_train, x_test, y_test):
+    y_pred = regressor.predict(x_test)
+    print('Coefficient of determination: %s' % r2_score(y_test, y_pred))
+    print('MAE: %s' % mean_absolute_error(y_test, y_pred))
+    print('MSE: %s' % mean_squared_error(y_test, y_pred))
+    y_pred2 = regressor.predict(x_train)
+    print('MAE (training): %s' % mean_absolute_error(y_train, y_pred2))
+    print('MSE (training): %s' % mean_squared_error(y_train, y_pred2))
 
 if __name__ == '__main__':
     #tree_barbecue()

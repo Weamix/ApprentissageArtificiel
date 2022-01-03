@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 
 
 def tree_barbecue():
-    data = pd.read_csv("barbecue.csv")
+    data = pd.read_csv("csv/barbecue.csv")
     print(data)
     # analyze(data, 'barbecue')
 
@@ -21,7 +21,7 @@ def tree_barbecue():
 
 
 def tree_glass():
-    data = pd.read_csv("glass-data.csv")
+    data = pd.read_csv("csv/glass-data.csv")
     del data['Id']
     print(data)
     analyze(data, 'Type')
@@ -39,12 +39,12 @@ def tree_glass():
 
 
 def tree_wine():
-    data = pd.read_csv("winequality-red.csv")
+    data = pd.read_csv("csv/winequality-red.csv")
     analyze(data, 'quality')
 
     x_train, y_train, x_test, y_test = split_data(data, 'quality')
 
-    classifier = tree.DecisionTreeRegressor(min_impurity_decrease=0.02, max_depth=8)
+    classifier = tree.DecisionTreeRegressor(min_impurity_decrease=0.02, max_depth=5)
     classifier.fit(x_train, y_train)
     tree.export_graphviz(classifier, out_file='tree.dot', feature_names=['fixed acidity','volatile acidity','citric acid','residual sugar','chlorides',
                                                                          'free sulfur dioxide','total sulfur dioxide','density','pH','sulphates','alcohol'])
@@ -94,11 +94,12 @@ def display_score_classifier(classifier, x_train, y_train, x_test, y_test):
 def display_score_regressor(regressor, x_train, y_train, x_test, y_test):
     y_pred = regressor.predict(x_test)
     print('Coefficient of determination: %s' % r2_score(y_test, y_pred))
-    print('MAE: %s' % mean_absolute_error(y_test, y_pred))
-    print('MSE: %s' % mean_squared_error(y_test, y_pred))
+    print('MAE (test): %s' % mean_absolute_error(y_test, y_pred))
+    print('MSE (test): %s' % mean_squared_error(y_test, y_pred))
     y_pred2 = regressor.predict(x_train)
     print('MAE (training): %s' % mean_absolute_error(y_train, y_pred2))
     print('MSE (training): %s' % mean_squared_error(y_train, y_pred2))
+
 
 if __name__ == '__main__':
     #tree_barbecue()

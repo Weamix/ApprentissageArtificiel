@@ -64,29 +64,14 @@ def plot_data(data, c):
     plt.show()
 
 
-if __name__ == '__main__':
-    '''Commented part 1 TP2 : Iris
-    
-    Combien d'exemples : 150
-    Combien de classes (species) : 3 classes
-    Combien de caractéristiques descriptives ? De quels types ? 4 : SepalLengthCm , SepalWidthCm , PetalLengthCm, PetalWidthCm
-    Combien d’exemples de chaque classe ? 50 chacune
-    Comment sont organisés les exemples ? Ordonnées d'où l'importance du random split
-
+def iris():
     data_iris = load_data("iris.csv", "Species", "Id")
     plot_data(data_iris, "Species")
     x_train, y_train, x_test, y_test = split_data(data_iris, "Species")
     classifier = create_model(KNeighborsClassifier(), x_train, y_train)
     #display_score_classifier(classifier, x_train, y_train, x_test, y_test)
 
-      '''
-
-    '''part 2 TP2 : Auto
-        392 exemples
-        0 classes car on est en régression
-        7 caractéristiques avec y=mp
-    '''
-
+def auto():
     data_auto = load_data("csv/auto-mpg.data.csv", "mpg", "name")
     #plot_data(data_auto, "mpg")
     x_train, y_train, x_test, y_test = split_data(data_auto, "mpg")
@@ -100,3 +85,24 @@ if __name__ == '__main__':
     x_test = ss.transform(x_test)
     classifier = create_model(KNeighborsRegressor(), x_train, y_train)
     display_score_regressor(classifier, x_train, y_train, x_test, y_test)
+
+
+if __name__ == '__main__':
+    '''Commented part 1 TP2 : Iris
+    
+    Combien d'exemples : 150
+    Combien de classes (species) : 3 classes
+    Combien de caractéristiques descriptives ? De quels types ? 4 : SepalLengthCm , SepalWidthCm , PetalLengthCm, PetalWidthCm
+    Combien d’exemples de chaque classe ? 50 chacune
+    Comment sont organisés les exemples ? Ordonnées d'où l'importance du random split
+      '''
+    #iris()
+
+    '''part 2 TP2 : Auto
+        392 exemples
+        0 classes car on est en régression
+        7 caractéristiques avec y=mp
+    '''
+
+    auto()
+

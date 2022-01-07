@@ -22,3 +22,8 @@ def plot2classes(fileName):
     plt.scatter(blue1, blue2, color="blue")
     plt.scatter(red1, red2, color="red")
     plt.show()
+
+
+if __name__ == '__main__':
+    plot2classes("test.txt")
+    plot2classes("train.txt")

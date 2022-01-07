@@ -3,16 +3,12 @@ import numpy as np
 
 def generate_number_between_0_and_1_in_square(x):
     for i in range(x):
-        x1 = np.random.uniform(0, 1, 2)
-        x2 = np.random.uniform(0, 1, 2)
-        x = x1[0] + x1[1]
-        y = x2[0] + x2[1]
-        point = x + y
-        if (point - 1) > 0:
+        x = np.random.uniform(0, 1, 2)
+        if (x[0] + x[1] - 1) > 0:
             tag = 1
         else:
             tag = -1
-        return x, y, tag
+        return x[0], x[1], tag
 
 
 def write_points_in_file(x):

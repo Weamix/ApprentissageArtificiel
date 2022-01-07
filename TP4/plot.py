@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 
+
 def plot2classes(fileName):
     file = open(fileName, "r")
     lines = file.readlines()

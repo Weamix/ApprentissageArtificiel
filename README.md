@@ -17,6 +17,8 @@ TP3 - arbres de décision (classification et régression) : https://www-lisic.un
 
 TP4 - perceptron : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/perceptronTP.pdf
 
+TP5 - réseaux de neuronnes : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp5.pdf
+
 Apprentissage automatique :
 
     Des données de chiens et de chats

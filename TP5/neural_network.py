@@ -3,6 +3,7 @@ from sklearn.neural_network import MLPClassifier
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
 
 
 def analyze(data, type):
@@ -58,9 +59,24 @@ def read_file(file):
     return lines
 
 
+def split_data(data, y):
+    train, test = train_test_split(data, test_size=0.3)
+    x_train = train
+    y_train = train[y]
+    del x_train[y]
+
+    x_test = test
+    y_test = test[y]
+    del x_test[y]
+
+    return x_train, y_train, x_test, y_test
+
+
 if __name__ == '__main__':
     data = pd.read_csv('human_resources.csv')
     analyze(data, 'left')
     label_encode(data, 'category')
     label_encode(data, 'salary')
     analyze_good_employees(data)
+    x_train, y_train, x_test, y_test = split_data(data, 'left')
+

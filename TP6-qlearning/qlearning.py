@@ -8,17 +8,16 @@ class Island:
 
     def __init__(self, matrix_size=MATRIX_SIZE):
         # 0 = case vide, 2 = rhum et 10 = tresor
-        dimension = (matrix_size, matrix_size)
-        m = np.zeros(dimension)
-
-        adding_tresor_in_map(m)
-        adding_rhums_in_map(m)
-
+        m = generate_matrix(matrix_size)
         self.matrix = m
 
-        for value in self.matrix:
-            #print(value)
-            pass
+
+def generate_matrix(matrix_size):
+    dimension = (matrix_size, matrix_size)
+    m = np.zeros(dimension)
+    adding_tresor_in_map(m)
+    adding_rhums_in_map(m)
+    return m
 
 
 def adding_tresor_in_map(m):
@@ -31,10 +30,12 @@ def adding_rhums_in_map(m):
         r, c = choose_random_point_in_map()
         m[r, c] = 2
 
+
 def choose_random_point_in_map():
-    random_row = np.random.choice(range(1,MATRIX_SIZE))
-    random_column = np.random.choice(range(1,MATRIX_SIZE))
-    return random_row,random_column
+    random_row = np.random.choice(range(1, MATRIX_SIZE))
+    random_column = np.random.choice(range(1, MATRIX_SIZE))
+    return random_row, random_column
+
 
 if __name__ == '__main__':
     island = Island()

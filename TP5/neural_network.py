@@ -53,13 +53,6 @@ def label_encode(data, col):
     #print(data)
 
 
-def read_file(file):
-    with open(file, 'r') as file:
-        lines = file.readlines()
-        #print(lines)
-    return lines
-
-
 def split_data(data, y):
     train, test = train_test_split(data, test_size=0.3)
     x_train = train

@@ -4,6 +4,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
 
 
 def analyze(data, type):
@@ -72,11 +73,26 @@ def split_data(data, y):
     return x_train, y_train, x_test, y_test
 
 
+def create_model(classifier, x, y):
+    classifier.fit(x, y)
+    return classifier
+
+
+def display_score(classifier, x_train, y_train, x_test, y_test):
+    print("Train score: {}, Test score {}".format(classifier.score(x_train, y_train), classifier.score(x_test, y_test)))
+    y_pred = classifier.predict(x_test)
+    print(confusion_matrix(y_test, y_pred))
+
+
 if __name__ == '__main__':
     data = pd.read_csv('human_resources.csv')
-    analyze(data, 'left')
+    #analyze(data, 'left')
     label_encode(data, 'category')
     label_encode(data, 'salary')
     analyze_good_employees(data)
     x_train, y_train, x_test, y_test = split_data(data, 'left')
+
+    classifier = create_model(MLPClassifier(), x_train, y_train)
+    display_score(classifier, x_train, y_train, x_test, y_test)
+
 

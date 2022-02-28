@@ -13,7 +13,7 @@ def epsilon_greedy(island, pirate):
     while number_moved != 20 and not pirate.found_tresor(island):
         if random > EPSILON:
             # déplacement vers le meilleur des voisins
-            pirate.move_to_best_action(island)
+            pirate.move_with_best_action(island)
         else:
             # random parmi les voisins possibles
             pirate.move_with_random_action(island)

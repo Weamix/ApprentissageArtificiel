@@ -6,7 +6,6 @@ NUMBER_RHUM = 5
 
 
 class Island:
-
     def __init__(self, matrix_size=MATRIX_SIZE):
         # 0 = case vide, 2 = rhum et 10 = tresor
         m = self.generate_matrix(matrix_size)
@@ -17,7 +16,7 @@ class Island:
         dimension = (matrix_size, matrix_size)
         m = np.zeros(dimension)
         self.add_rhums_in_map(m)
-        self.adding_tresor_in_map(m)
+        self.add_tresor_in_map(m)
         return m
 
     def add_rhums_in_map(self, m):
@@ -25,7 +24,7 @@ class Island:
             r, c = self.choose_random_point_in_map()
             m[r, c] = 2
 
-    def adding_tresor_in_map(self, m):
+    def add_tresor_in_map(self, m):
         r, c = self.choose_random_point_in_map()
         m[r, c] = 10
 
@@ -70,23 +69,23 @@ class Island:
         for state in states:
             x, y = state
             neighbours = self.actions_for_state(x, y)
-            #print("neigbours:", neighbours)
+            # print("neigbours:", neighbours)
             values_for_neighbours = self.values_for_neighbours_with_negative_elements_out_map(self.matrix, neighbours)
-            #print("values_for_neighbours:", values_for_neighbours)
+            # print("values_for_neighbours:", values_for_neighbours)
             m[state] = values_for_neighbours
 
-        print("matrice_state_action", m)
+        #print("matrice_state_action", m)
         return m
 
     def state_for_action(self, state, action):
         # "à partir de la position et d'une direction tu renvoies la case d'arrivée"
-        if action == "N":
+        if action == 0:
             return state[0], state[1] - 1
-        elif action == "S":
+        elif action == 1:
             return state[0], state[1] + 1
-        elif action == "E":
+        elif action == 2:
             return state[0] - 1, state[1]
-        elif action == "O":
+        elif action == 3:
             return state[0] + 1, state[1]
         else:
             return "Action non valide"

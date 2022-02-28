@@ -16,7 +16,7 @@ def epsilon_greedy(island, pirate):
             pirate.move_to_best_action(island)
         else:
             # random parmi les voisins possibles
-            pirate.move_to_random_action(island)
+            pirate.move_with_random_action(island)
 
         number_moved += 1
 

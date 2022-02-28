@@ -1,4 +1,3 @@
-import island
 
 
 class Pirate:
@@ -9,8 +8,8 @@ class Pirate:
         self.position = position
         print("move to :", position)
 
-    def move_to_random_action(self, island):
-        neighbours = island.neighbours_for_position(self.position[0], self.position[1])
+    def move_with_random_action(self, island):
+        neighbours = island.actions_for_state(self.position[0], self.position[1])
         print("\nneighbors :", neighbours)
         n = island.sort_neighbours_exclude_elements_out_map(neighbours)
         print("sorted neighbors :", n)
@@ -19,7 +18,7 @@ class Pirate:
         self.move_to(n[random_value])
 
     def move_to_best_action(self, island):
-        neighbours = island.neighbours_for_position(self.position[0], self.position[1])
+        neighbours = island.actions_for_state(self.position[0], self.position[1])
         print("\nneighbors :", neighbours)
         values = island.values_for_neighbours_with_negative_elements_out_map(island.matrix, neighbours)
         print("values :", values)

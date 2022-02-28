@@ -16,11 +16,11 @@ class Island:
     def generate_matrix(self, matrix_size):
         dimension = (matrix_size, matrix_size)
         m = np.zeros(dimension)
-        self.adding_rhums_in_map(m)
+        self.add_rhums_in_map(m)
         self.adding_tresor_in_map(m)
         return m
 
-    def adding_rhums_in_map(self, m):
+    def add_rhums_in_map(self, m):
         for i in range(NUMBER_RHUM):
             r, c = self.choose_random_point_in_map()
             m[r, c] = 2
@@ -35,7 +35,7 @@ class Island:
         return random_column, random_row
 
     # return neighbors index in matrix for a position = actions for a state
-    def neighbours_for_position(self, x, y):
+    def actions_for_state(self, x, y):
         # [(N),(S),(E),(O)]
         return [(x, y - 1), (x, y + 1), (x - 1, y), (x + 1, y)]
 
@@ -69,15 +69,24 @@ class Island:
 
         for state in states:
             x, y = state
-            neighbors = self.neighbours_for_position(x, y)
-            # print("neigbors:", neighbors)
-            values_for_neighbours = self.values_for_neighbours_with_negative_elements_out_map(self.matrix, neighbors)
-            # print("values_for_neighbors:", values_for_neighbors)
+            neighbours = self.actions_for_state(x, y)
+            #print("neigbours:", neighbours)
+            values_for_neighbours = self.values_for_neighbours_with_negative_elements_out_map(self.matrix, neighbours)
+            #print("values_for_neighbours:", values_for_neighbours)
             m[state] = values_for_neighbours
 
         print("matrice_state_action", m)
         return m
 
     def new_state(self, state, action):
-        # à partir de la position et d'une direction tu renvoies la case d'arrivée
-        pass
+        # "à partir de la position et d'une direction tu renvoies la case d'arrivée"
+        if action == "N":
+            return state[0], state[1] - 1
+        elif action == "S":
+            return state[0], state[1] + 1
+        elif action == "E":
+            return state[0] - 1, state[1]
+        elif action == "O":
+            return state[0] + 1, state[1]
+        else:
+            return "Action non valide"

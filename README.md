@@ -19,6 +19,8 @@ TP4 - perceptron : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Appre
 
 TP5 - réseaux de neuronnes : https://www-lisic.univ-littoral.fr/~teytaud/files/Cours/Apprentissage/tp5.pdf
 
+TP6 - apprentissage par renforcement : espilon greedy / q-learning [TP6-qlearning/qlearning.pdf](TP6-qlearning/qlearning.pdf)
+
 Apprentissage automatique :
 
     Des données de chiens et de chats

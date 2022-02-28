@@ -1,6 +1,5 @@
 import island
 import numpy as np
-from collections import defaultdict
 
 GAMMA = 0.9
 
@@ -13,8 +12,10 @@ def e_greedy(matrix, tresor_position):
     current_position = starting_position
 
     while number_moved != 20:
-        neighbors = island.neighbors_for_position(current_position[0], current_position[1])
-        print("neighbors :", neighbors)
+        n = island.neighbors_for_position(current_position[0], current_position[1])
+        print("n :", n)
+        neighbors = island.sort_neighbors_exclude_elements_out_map(n)
+        print("neighbors sorted:", neighbors)
         values = island.values_for_neighbors(matrix, neighbors)
         print("values :", values)
         if random > 0.9:
@@ -25,7 +26,7 @@ def e_greedy(matrix, tresor_position):
             print("index best :", index)
         else:
             # random parmi les voisins possibles
-            random_value = np.random.choice(range(len(neighbors)))
+            random_value = island.choose_random_action_in_neigbors(neighbors)
             print("random_value :", random_value)
             index = random_value
             print("index random :", index)
@@ -42,13 +43,7 @@ def e_greedy(matrix, tresor_position):
 
 
 def q_learning():
-    create_q_table()
-
-
-def create_q_table():
-    Q = defaultdict(lambda: np.zeros(4))
-    print(Q)
-    return Q
+    island.matrice_state_action()
 
 
 def monte_carlo():

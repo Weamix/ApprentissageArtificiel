@@ -72,15 +72,15 @@ class Island:
 
     def matrice_state_action(self):
         states = self.get_all_positions()
-        print("states:", states)
+        #print("states:", states)
         m = defaultdict(lambda: np.zeros(4))
 
         for state in states:
             x, y = state
             neighbors = self.neighbors_for_position(x, y)
-            print("neigbors:", neighbors)
+            #print("neigbors:", neighbors)
             values_for_neighbors = self.values_for_neighbors_with_negative_elements_out_map(self.matrix, neighbors)
-            print("values_for_neighbors:", values_for_neighbors)
+            #print("values_for_neighbors:", values_for_neighbors)
             m[state] = values_for_neighbors
 
         print("matrice_state_action", m)

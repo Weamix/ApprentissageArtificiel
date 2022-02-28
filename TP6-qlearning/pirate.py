@@ -13,30 +13,30 @@ def e_greedy(matrix, tresor_position):
 
     while number_moved != 20:
         n = island.neighbors_for_position(current_position[0], current_position[1])
-        print("n :", n)
+        #print("n :", n)
         neighbors = island.sort_neighbors_exclude_elements_out_map(n)
-        print("neighbors sorted:", neighbors)
+        #print("neighbors sorted:", neighbors)
         values = island.values_for_neighbors(matrix, neighbors)
-        print("values :", values)
+        #print("values :", values)
         if random > 0.9:
             # déplacement vers le meilleur des voisins
             maximum = max(values)
-            print("maximum :", maximum)
+            #print("maximum :", maximum)
             index = values.index(maximum)
-            print("index best :", index)
+            #print("index best :", index)
         else:
             # random parmi les voisins possibles
             random_value = island.choose_random_action_in_neigbors(neighbors)
-            print("random_value :", random_value)
+            #print("random_value :", random_value)
             index = random_value
-            print("index random :", index)
+            #print("index random :", index)
 
         current_position = neighbors[index]
-        print("current_position : ", current_position)
+        #print("current_position : ", current_position)
         number_moved += 1
 
-        if starting_position == tresor_position:
-            print("tresor found")
+        if current_position == tresor_position:
+            print("tresor found !!!")
             break
 
     print("number_moved : ", number_moved)
@@ -54,6 +54,6 @@ if __name__ == '__main__':
     island = island.Island()
     print(island.matrix)
     print("tresor position:", island.tresor)
-    #e_greedy(island.matrix, island.tresor)
-    q_learning()
+    e_greedy(island.matrix, island.tresor)
+    #q_learning()
 

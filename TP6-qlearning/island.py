@@ -62,7 +62,7 @@ class Island:
                 values.append(-1)
         return values
 
-    def matrice_state_action(self):
+    def matrix_state_action(self):
         states = self.get_all_positions()
         # print("states:", states)
         m = defaultdict(lambda: np.zeros(4))
@@ -78,7 +78,7 @@ class Island:
         print("matrice_state_action", m)
         return m
 
-    def new_state(self, state, action):
+    def state_for_action(self, state, action):
         # "à partir de la position et d'une direction tu renvoies la case d'arrivée"
         if action == "N":
             return state[0], state[1] - 1

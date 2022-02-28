@@ -21,15 +21,31 @@ class Agent():
 
         return new_state
 
-    def q_learning(self, island):
+    def episode(self, pirate):
+        print("initial state : ", pirate.position)
+        initial_action = np.random.randint(0, 4)
+        print("initial action : ", initial_action)
+
+        if not pirate.found_tresor(island):
+            new_state = self.calculate_q(pirate.position, initial_action)
+
+        while not pirate.found_tresor(island):
+            initial_action = np.random.randint(0, 4)
+            self.calculate_q(new_state, initial_action)
+
+    def episodes(self, pirate):
+        pass
+
+    def q_learning(self, island, pirate):
         new_state = self.calculate_q((0, 0), 1)
-        print(new_state)
+        print("new_state", new_state)
+        self.episode(pirate)
 
 
 if __name__ == '__main__':
     island = island.Island()
-    # pirate = pirate.Pirate(island)
+    pirate = pirate.Pirate(island)
     print(island.matrix)
     print("tresor position:", island.tresor)
     agent = Agent()
-    agent.q_learning(island)
+    agent.q_learning(island, pirate)

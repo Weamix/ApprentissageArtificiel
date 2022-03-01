@@ -38,7 +38,8 @@ Donc >0.2 et > -0.6
 ### Algorithmes - dataCCfinal_1
 - K voisins
     
-`Train score :  0.7428571428571429
+```
+Train score :  0.7428571428571429
 Test score :  0.5806451612903226
 [[14  0  0  1  0  0  0]
  [ 0  0  6  3  0  0  0]
@@ -46,7 +47,8 @@ Test score :  0.5806451612903226
  [ 0  0  0  2  0  0  0]
  [ 0  0  0  2  0  0  0]
  [ 0  0  0  0  0  1  0]
- [ 0  0  0  0  0  0  1]]`
+ [ 0  0  0  0  0  0  1]]
+ ```
 
 - Arbre de décisions
 

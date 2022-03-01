@@ -14,11 +14,12 @@ Champs : dataCCfinal_1 / dataCCfinal_2
 
     Nombre de caractéristiques descriptives : 25 / 14
 
-    Nombre d'exemples de chaque classe : 101 / 17 379 mais 0 classes car on est en régression
+    Nombre d'exemples de chaque classe : 101 / 17 379
 
-Régression : classement sur des valeurs numériques
+Cas de classification
 
-Matrice de corélation - dataCCfinal_1
+
+### Matrice de corélation - dataCCfinal_1
 
     Suppresion des colonnes A, B et C pour générer la matrice de corrélation
     A et B ont des valeurs fixes
@@ -34,11 +35,26 @@ Donc >0.2 et > -0.6
 
 ![imgs/correlation_matrix_data_1.png](imgs/correlation_matrix_data_1_with_annot.png)
 
+### Algorithmes - dataCCfinal_1
 - K voisins
+    
+`Train score :  0.7428571428571429
+Test score :  0.5806451612903226
+[[14  0  0  1  0  0  0]
+ [ 0  0  6  3  0  0  0]
+ [ 0  1  0  0  0  0  0]
+ [ 0  0  0  2  0  0  0]
+ [ 0  0  0  2  0  0  0]
+ [ 0  0  0  0  0  1  0]
+ [ 0  0  0  0  0  0  1]]`
+
 - Arbre de décisions
+
 - Réseaux de neuronnes
 
-Matrice de corélation - dataCCfinal_2
+### Matrice de corélation - dataCCfinal_2
+
+Cas de régression
 
 
 # Commentaires codes

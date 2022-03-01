@@ -83,4 +83,41 @@ Test score 0.7741935483870968
  [ 0  0  0  0  0  0  0]]
 ```
 
+### Si on chosiit de prendre les valeurs les plus corélés à Z : ['F', 'I', 'N', 'O', 'P']
+Nous aurons des meilleurs scores :
+
+```
+KNeighborsClassifier
+Train score :  0.8285714285714286
+Test score :  0.8709677419354839
+[[13  0  0  1  0  0  0]
+ [ 0  5  0  0  0  0  0]
+ [ 0  0  1  0  0  0  0]
+ [ 0  0  0  3  0  0  0]
+ [ 0  0  0  0  1  0  0]
+ [ 0  0  0  0  0  3  0]
+ [ 0  0  0  2  1  0  1]]
+ 
+TreeClassifier
+Train score :  0.9714285714285714
+Test score :  0.9354838709677419
+[[14  0  0  0  0  0  0]
+ [ 0  5  0  0  0  0  0]
+ [ 0  0  0  0  0  0  1]
+ [ 0  0  0  3  0  0  0]
+ [ 0  0  0  0  1  0  0]
+ [ 0  0  0  0  0  3  0]
+ [ 0  0  0  0  1  0  3]]
+ 
+NeuralNetwork
+Train score: 0.8571428571428571, Test score 0.8709677419354839
+[[14  0  0  0  0  0  0]
+ [ 0  5  0  0  0  0  0]
+ [ 0  0  1  0  0  0  0]
+ [ 0  0  0  3  0  0  0]
+ [ 0  0  0  0  0  0  1]
+ [ 0  0  0  0  0  3  0]
+ [ 0  2  1  0  0  0  1]]
+```
+
 ### Matrice de corélation - dataCCfinal_2 - Cas de régression

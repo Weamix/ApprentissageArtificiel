@@ -94,10 +94,10 @@ def k_neighbors(model_string, model, x_train, y_train, x_test, y_test):
         display_score_regressor(classifier, x_train, y_train, x_test, y_test)
 
 
-def decision_tree(classifier, x_train, y_train, x_test, y_test):
+def decision_tree(classifier, x_train, y_train, x_test, y_test, letters):
     classifier.fit(x_train, y_train)
     tree.export_graphviz(classifier, out_file='tree.dot',
-                         feature_names=['F', 'G', 'I', 'L', 'N', 'Q'])
+                         feature_names=letters)
     display_score_classifier(classifier, x_train, y_train, x_test, y_test)
 
 
@@ -123,19 +123,24 @@ if __name__ == '__main__':
 
     # label_encode(dataCCfinal_1, 'C')
 
-    # F, G, I, L, N, Q et Z
-    dataCCfinal_1 = dataCCfinal_1.drop(
+    # Colonnes les plus et moins corrélés à Z : F, G, I, L, N, Q
+    dataCCfinal_1_FGILNQ = dataCCfinal_1.drop(
         columns=['A', 'B', 'C', 'D', 'E', 'H', 'J', 'K', 'M', 'O', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y'], axis=1)
+    # Colonnes les plus corrélés à Z : F,I,N,O,P
+    dataCCfinal_1_FINOP= dataCCfinal_1.drop(
+        columns=['A','B','C','D','E','G','H','J','K','L','M','Q','R','S','T','U','V','W','X','Y'], axis=1)
     # dataCCfinal_2 = dataCCfinal_2.drop(['C'], axis=1)
 
     # analyze(dataCCfinal_1, 'Z')
     # analyze(dataCCfinal_2, 'Z')
 
-    x_train1, y_train1, x_test1, y_test1 = split_data(dataCCfinal_1, 'Z')
+    x_train1, y_train1, x_test1, y_test1 = split_data(dataCCfinal_1_FINOP, 'Z')
     print("KNeighborsClassifier")
     k_neighbors("classifier", KNeighborsClassifier(), x_train1, y_train1, x_test1, y_test1)
     print("TreeClassifier")
-    decision_tree(tree.DecisionTreeClassifier(criterion='entropy', max_depth=8), x_train1, y_train1, x_test1, y_test1)
+    letters_FINOP = ['F', 'I', 'N', 'O', 'P']
+    #letters_FGILNQ=['F', 'G', 'I', 'L', 'N', 'Q']
+    decision_tree(tree.DecisionTreeClassifier(criterion='entropy', max_depth=8), x_train1, y_train1, x_test1, y_test1, letters_FINOP)
     print("NeuralNetwork")
     neural_network(MLPClassifier(), x_train1, y_train1, x_test1, y_test1)
 

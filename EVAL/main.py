@@ -1,7 +1,6 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, mean_absolute_error, mean_squared_error, r2_score
@@ -48,11 +47,6 @@ def split_data(data, y):
     del x_test[y]
 
     return x_train, y_train, x_test, y_test
-
-
-def create_model(model, x, y):
-    model.fit(x, y)
-    return model
 
 
 def display_score_classifier(classifier, x_train, y_train, x_test, y_test):
@@ -103,7 +97,6 @@ def create_model(classifier, x, y):
     return classifier
 
 
-
 def data_replace_string_by_float():
     # Strings to float without , but .
     dataCCfinal_2['B'] = dataCCfinal_2['B'].str.replace(',', '.').astype(float)
@@ -132,13 +125,12 @@ if __name__ == '__main__':
     dataCCfinal_2_DIJMN = dataCCfinal_2.drop(['A', 'B', 'C', 'E', 'F', 'G', 'H', 'K', 'L'], axis=1)
 
     """
-    # ANALYZE DATA
+    print("ANALYZE DATA"
     analyze(dataCCfinal_1, 'Z')
     analyze(dataCCfinal_2, 'Z')
     """
 
-    """
-    # SPLIT, TRAIN, TEST - ALGOS ON DATASET 1
+    print("SPLIT, TRAIN, TEST - ALGOS ON DATASET 1")
     x_train1, y_train1, x_test1, y_test1 = split_data(dataCCfinal_1_FINOP, 'Z')
     print("\nKNeighborsClassifier")
     k_neighbors("classifier", KNeighborsClassifier(), x_train1, y_train1, x_test1, y_test1)
@@ -147,9 +139,9 @@ if __name__ == '__main__':
     #letters_FGILNQ= ['F', 'G', 'I', 'L', 'N', 'Q']
     decision_tree("classifier",tree.DecisionTreeClassifier(criterion='entropy', max_depth=8), x_train1, y_train1, x_test1, y_test1, letters_FINOP)
     print("\nNeuralNetwork")
-    neural_network("classifier",MLPClassifier(), x_train1, y_train1, x_test1, y_test1)"""
+    neural_network("classifier",MLPClassifier(), x_train1, y_train1, x_test1, y_test1)
 
-    # SPLIT, TRAIN, TEST - ALGOS ON DATASET 2
+    print("SPLIT, TRAIN, TEST - ALGOS ON DATASET 2")
     x_train2, y_train2, x_test2, y_test2 = split_data(dataCCfinal_2_DIJMN, 'Z')
     print("\nKNeighborsRegressor")
     k_neighbors("regressor", KNeighborsRegressor(), x_train2, y_train2, x_test2, y_test2)

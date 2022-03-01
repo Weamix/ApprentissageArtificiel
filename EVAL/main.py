@@ -10,7 +10,7 @@ from sklearn.neural_network import MLPClassifier, MLPRegressor
 
 
 def analyze(data, type):
-    # Pour chaque champs : data1 / data2
+    # Pour chaque "champ : data1 / data2"
     # Apercu de la base
     print(data.head())
     # Nombre d'exemples : 101 / 17 379
@@ -35,20 +35,6 @@ def matrix_correlation(data):
     sns.heatmap(data.corr(), vmax=0.5, cmap="PiYG", annot=False)
     plt.title('Correlation matrix')
     plt.show()
-
-
-def label_encode(data, col):
-    # Transforme un type catégorie en entier
-    le = LabelEncoder()
-    # On récupère tous les noms de catégories possibles
-    unique_values = list(data[col].unique())
-    le_fitted = le.fit(unique_values)
-    # On liste l'ensemble des valeurs
-    values = list(data[col].values)
-    # On transforme les catégories en entier
-    values_transformed = le.transform(values)
-    # On fait le remplacement de la colonne dans le dataframe d'origine
-    data[col] = values_transformed
 
 
 def split_data(data, y):
@@ -116,11 +102,6 @@ def create_model(classifier, x, y):
     classifier.fit(x, y)
     return classifier
 
-
-def display_score(classifier, x_train, y_train, x_test, y_test):
-    print("Train score: {}, Test score {}".format(classifier.score(x_train, y_train), classifier.score(x_test, y_test)))
-    y_pred = classifier.predict(x_test)
-    print(confusion_matrix(y_test, y_pred))
 
 
 def data_replace_string_by_float():

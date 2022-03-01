@@ -37,7 +37,7 @@ Donc >0.2 et > -0.6
 
 ![imgs/correlation_matrix_data_1.png](imgs/correlation_matrix_data_1_with_annot.png)
 
-### Algorithmes - dataCCfinal_1
+### Algorithmes - dataCCfinal_1 - Cas de classification
 - K voisins avec  F, G, I, L, N, Q et Z
     
 ```
@@ -134,6 +134,8 @@ Test score 0.8709677419354839
 ![imgs/correlation_matrix_data_1.png](imgs/correlation_matrix_data_2.png)
 
 Les colonnes le plus en coorélation avec Z sont : D,I,J,M,N
+
+### Algorithmes - d dataCCfinal_2 - Cas de régression
 
 ```
 KNeighborsRegressor

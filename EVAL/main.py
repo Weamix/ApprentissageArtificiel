@@ -5,6 +5,8 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, mean_absolute_error, mean_squared_error, r2_score
+from sklearn import tree
+from sklearn.neural_network import MLPClassifier
 
 
 def analyze(data, type):
@@ -68,7 +70,6 @@ def create_model(model, x, y):
 
 
 def display_score_classifier(classifier, x_train, y_train, x_test, y_test):
-    print("KNeighborsClassifier")
     print("Train score : ", classifier.score(x_train, y_train))
     print("Test score : ", classifier.score(x_test, y_test))
     y_pred = classifier.predict(x_test)
@@ -90,6 +91,30 @@ def k_neighbors(x_train, y_train, x_test, y_test):
     display_score_classifier(classifier, x_train, y_train, x_test, y_test)
 
 
+def tree_classifier(x_train, y_train, x_test, y_test):
+    classifier = tree.DecisionTreeClassifier(criterion='entropy', max_depth=8)
+    classifier.fit(x_train, y_train)
+    tree.export_graphviz(classifier, out_file='tree.dot',
+                         feature_names=['F', 'G', 'I', 'L', 'N', 'Q'])
+    display_score_classifier(classifier, x_train, y_train, x_test, y_test)
+
+
+def neural_network(x_train, y_train, x_test, y_test):
+    classifier = create_model(MLPClassifier(), x_train, y_train)
+    display_score(classifier, x_train, y_train, x_test, y_test)
+
+
+def create_model(classifier, x, y):
+    classifier.fit(x, y)
+    return classifier
+
+
+def display_score(classifier, x_train, y_train, x_test, y_test):
+    print("Train score: {}, Test score {}".format(classifier.score(x_train, y_train), classifier.score(x_test, y_test)))
+    y_pred = classifier.predict(x_test)
+    print(confusion_matrix(y_test, y_pred))
+
+
 if __name__ == '__main__':
     dataCCfinal_1 = pd.read_csv('csv/dataCCfinal_1.csv')
     dataCCfinal_2 = pd.read_csv('csv/dataCCfinal_2.csv')
@@ -97,13 +122,20 @@ if __name__ == '__main__':
     # label_encode(dataCCfinal_1, 'C')
 
     # F, G, I, L, N, Q et Z
-
-    dataCCfinal_1 = dataCCfinal_1.drop(columns=['A', 'B', 'C','D','E','H','J','K','M','O','P','R','S','T','U','V','W','X','Y'], axis=1)
+    dataCCfinal_1 = dataCCfinal_1.drop(
+        columns=['A', 'B', 'C', 'D', 'E', 'H', 'J', 'K', 'M', 'O', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y'], axis=1)
     # dataCCfinal_2 = dataCCfinal_2.drop(['C'], axis=1)
 
-    #analyze(dataCCfinal_1, 'Z')
+    # analyze(dataCCfinal_1, 'Z')
     # analyze(dataCCfinal_2, 'Z')
 
     x_train, y_train, x_test, y_test = split_data(dataCCfinal_1, 'Z')
-    k_neighbors(x_train, y_train, x_test, y_test)
 
+    #print("KNeighborsClassifier")
+    #k_neighbors(x_train, y_train, x_test, y_test)
+
+    #print("TreeClassifier")
+    #tree_classifier(x_train, y_train, x_test, y_test)
+
+    print("NeuralNetwork")
+    neural_network(x_train, y_train, x_test, y_test)

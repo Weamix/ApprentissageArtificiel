@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, mean_absolute_error, mean_squared_error, r2_score
 from sklearn import tree
-from sklearn.neural_network import MLPClassifier
+from sklearn.neural_network import MLPClassifier,MLPRegressor
 
 
 def analyze(data, type):
@@ -86,21 +86,23 @@ def display_score_regressor(regressor, x_train, y_train, x_test, y_test):
     print('MSE (training): %s' % mean_squared_error(y_train, y_pred2))
 
 
-def k_neighbors(x_train, y_train, x_test, y_test):
-    classifier = create_model(KNeighborsClassifier(), x_train, y_train)
-    display_score_classifier(classifier, x_train, y_train, x_test, y_test)
+def k_neighbors(model_string, model, x_train, y_train, x_test, y_test):
+    classifier = create_model(model, x_train, y_train)
+    if model_string == "classifier":
+        display_score_classifier(classifier, x_train, y_train, x_test, y_test)
+    elif model_string == "regressor":
+        display_score_regressor(classifier, x_train, y_train, x_test, y_test)
 
 
-def tree_classifier(x_train, y_train, x_test, y_test):
-    classifier = tree.DecisionTreeClassifier(criterion='entropy', max_depth=8)
+def decision_tree(classifier, x_train, y_train, x_test, y_test):
     classifier.fit(x_train, y_train)
     tree.export_graphviz(classifier, out_file='tree.dot',
                          feature_names=['F', 'G', 'I', 'L', 'N', 'Q'])
     display_score_classifier(classifier, x_train, y_train, x_test, y_test)
 
 
-def neural_network(x_train, y_train, x_test, y_test):
-    classifier = create_model(MLPClassifier(), x_train, y_train)
+def neural_network(model, x_train, y_train, x_test, y_test):
+    classifier = create_model(model, x_train, y_train)
     display_score(classifier, x_train, y_train, x_test, y_test)
 
 
@@ -129,13 +131,18 @@ if __name__ == '__main__':
     # analyze(dataCCfinal_1, 'Z')
     # analyze(dataCCfinal_2, 'Z')
 
-    x_train, y_train, x_test, y_test = split_data(dataCCfinal_1, 'Z')
-
-    #print("KNeighborsClassifier")
-    #k_neighbors(x_train, y_train, x_test, y_test)
-
-    #print("TreeClassifier")
-    #tree_classifier(x_train, y_train, x_test, y_test)
-
+    x_train1, y_train1, x_test1, y_test1 = split_data(dataCCfinal_1, 'Z')
+    print("KNeighborsClassifier")
+    k_neighbors("classifier", KNeighborsClassifier(), x_train1, y_train1, x_test1, y_test1)
+    print("TreeClassifier")
+    decision_tree(tree.DecisionTreeClassifier(criterion='entropy', max_depth=8), x_train1, y_train1, x_test1, y_test1)
     print("NeuralNetwork")
-    neural_network(x_train, y_train, x_test, y_test)
+    neural_network(MLPClassifier(), x_train1, y_train1, x_test1, y_test1)
+
+    # x_train2, y_train2, x_test2, y_test2 = split_data(dataCCfinal_2, 'Z')
+    # print("KNeighborsRegressor")
+    # k_neighbors("regressor", KNeighborsRegressor(), x_train2, y_train2, x_test2, y_test2)
+    # print("TreeRegressor")
+    #decision_tree( tree.DecisionTreeRegressor(min_impurity_decrease=0.02, max_depth=5), x_train1, y_train1, x_test1, y_test1)
+    # print("NeuralNetworkRegressor")
+    #neural_network(MLPRegressor(), x_train1, y_train1, x_test1, y_test1)

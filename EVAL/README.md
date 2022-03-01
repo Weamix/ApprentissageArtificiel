@@ -2,16 +2,17 @@
 
 Objectif : apprendre la colonne Z
 
-# How to run code?
+## How to run code?
 
 Using python
+
 Click right on the file and select `Run` on Pycharm ;-)
 
-# Explications/choix
+## Explications/choix
 
-## Analyze data : 
+### Analyze data : 
 
-Champs : dataCCfinal_1 / dataCCfinal_2
+Champ : dataCCfinal_1 / dataCCfinal_2
 
     Nombre d'exemples : 101 / 17 379
 
@@ -83,8 +84,3 @@ Test score 0.7741935483870968
 ```
 
 ### Matrice de corélation - dataCCfinal_2 - Cas de régression
-
-
-
-
-# Commentaires codes

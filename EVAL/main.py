@@ -6,7 +6,6 @@ from sklearn.preprocessing import LabelEncoder
 
 def analyze(data, type):
     # Pour chaque champs : data1 / data2
-
     # Apercu de la base
     print(data.head())
     # Nombre d'exemples : 101 / 17 379
@@ -24,7 +23,6 @@ def analyze(data, type):
 def matrix_correlation(data):
     averages = data.mean()
     print(averages)
-
     sns.set()
     plt.figure(figsize=(15, 8))
     plt.hist(data)
@@ -32,6 +30,7 @@ def matrix_correlation(data):
     sns.heatmap(data.corr(), vmax=0.5, cmap="PiYG", annot=True)
     plt.title('Correlation matrix')
     plt.show()
+
 
 def label_encode(data, col):
     # Transforme un type catégorie en entier
@@ -46,16 +45,16 @@ def label_encode(data, col):
     # On fait le remplacement de la colonne dans le dataframe d'origine
     data[col] = values_transformed
 
+
 if __name__ == '__main__':
     dataCCfinal_1 = pd.read_csv('csv/dataCCfinal_1.csv')
     dataCCfinal_2 = pd.read_csv('csv/dataCCfinal_2.csv')
 
-    #label_encode(dataCCfinal_1, 'C')
+    # label_encode(dataCCfinal_1, 'C')
 
-    dataCCfinal_1 = dataCCfinal_1.drop(columns=['A','B','C'], axis=1)
-    #dataCCfinal_2 = dataCCfinal_2.drop(['C'], axis=1)
+    # F, G, I, L, N, Q
+    dataCCfinal_1 = dataCCfinal_1.drop(columns=['A', 'B', 'C','D','E','H','J','K','M','O','P','R','S','T','U','V','W','X','Y','Z'], axis=1)
+    # dataCCfinal_2 = dataCCfinal_2.drop(['C'], axis=1)
 
     analyze(dataCCfinal_1, 'Z')
-    #analyze(dataCCfinal_2, 'Z')
-
-
+    # analyze(dataCCfinal_2, 'Z')

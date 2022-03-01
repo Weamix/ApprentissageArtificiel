@@ -34,6 +34,10 @@ Donc >0.2 et > -0.6
 
 ![imgs/correlation_matrix_data_1.png](imgs/correlation_matrix_data_1_with_annot.png)
 
+- K voisins
+- Arbre de décisions
+- Réseaux de neuronnes
+
 Matrice de corélation - dataCCfinal_2
 
 

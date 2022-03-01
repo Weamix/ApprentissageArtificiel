@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, mean_absolute_error, mean_squared_error, r2_score
 from sklearn import tree
-from sklearn.neural_network import MLPClassifier,MLPRegressor
+from sklearn.neural_network import MLPClassifier, MLPRegressor
 
 
 def analyze(data, type):
@@ -94,16 +94,22 @@ def k_neighbors(model_string, model, x_train, y_train, x_test, y_test):
         display_score_regressor(classifier, x_train, y_train, x_test, y_test)
 
 
-def decision_tree(classifier, x_train, y_train, x_test, y_test, letters):
+def decision_tree(model_string, classifier, x_train, y_train, x_test, y_test, letters):
     classifier.fit(x_train, y_train)
     tree.export_graphviz(classifier, out_file='tree.dot',
                          feature_names=letters)
-    display_score_classifier(classifier, x_train, y_train, x_test, y_test)
+    if model_string == "classifier":
+        display_score_classifier(classifier, x_train, y_train, x_test, y_test)
+    elif model_string == "regressor":
+        display_score_regressor(classifier, x_train, y_train, x_test, y_test)
 
 
-def neural_network(model, x_train, y_train, x_test, y_test):
+def neural_network(model_string, model, x_train, y_train, x_test, y_test):
     classifier = create_model(model, x_train, y_train)
-    display_score(classifier, x_train, y_train, x_test, y_test)
+    if model_string == "classifier":
+        display_score_classifier(classifier, x_train, y_train, x_test, y_test)
+    elif model_string == "regressor":
+        display_score_regressor(classifier, x_train, y_train, x_test, y_test)
 
 
 def create_model(classifier, x, y):
@@ -134,13 +140,15 @@ if __name__ == '__main__':
 
     # label_encode(dataCCfinal_1, 'C')
 
-    # Colonnes les plus et moins corrélés à Z : F, G, I, L, N, Q
+    # Colonnes les plus et moins corrélés à Z : F, G, I, L, N, Q -data1
     dataCCfinal_1_FGILNQ = dataCCfinal_1.drop(
         columns=['A', 'B', 'C', 'D', 'E', 'H', 'J', 'K', 'M', 'O', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y'], axis=1)
-    # Colonnes les plus corrélés à Z : F,I,N,O,P
-    dataCCfinal_1_FINOP= dataCCfinal_1.drop(
-        columns=['A','B','C','D','E','G','H','J','K','L','M','Q','R','S','T','U','V','W','X','Y'], axis=1)
-    #dataCCfinal_2 = dataCCfinal_2.drop(['C'], axis=1)
+    # Colonnes les plus corrélés à Z : F,I,N,O,P - data1
+    dataCCfinal_1_FINOP = dataCCfinal_1.drop(
+        columns=['A', 'B', 'C', 'D', 'E', 'G', 'H', 'J', 'K', 'L', 'M', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y'],
+        axis=1)
+    # Colonnes les plus corrélés à Z : ['D', 'I', 'J', 'M', 'N'] - data2
+    dataCCfinal_2_DIJMN = dataCCfinal_2.drop(['A', 'B', 'C', 'E', 'F', 'G', 'H', 'K', 'L'], axis=1)
 
     """
     # ANALYZE DATA
@@ -151,21 +159,22 @@ if __name__ == '__main__':
     """
     # SPLIT, TRAIN, TEST - ALGOS ON DATASET 1
     x_train1, y_train1, x_test1, y_test1 = split_data(dataCCfinal_1_FINOP, 'Z')
-    print("KNeighborsClassifier")
+    print("\nKNeighborsClassifier")
     k_neighbors("classifier", KNeighborsClassifier(), x_train1, y_train1, x_test1, y_test1)
-    print("TreeClassifier")
+    print("\nTreeClassifier")
     letters_FINOP = ['F', 'I', 'N', 'O', 'P']
     #letters_FGILNQ= ['F', 'G', 'I', 'L', 'N', 'Q']
-    decision_tree(tree.DecisionTreeClassifier(criterion='entropy', max_depth=8), x_train1, y_train1, x_test1, y_test1, letters_FINOP)
-    print("NeuralNetwork")
-    neural_network(MLPClassifier(), x_train1, y_train1, x_test1, y_test1)"""
+    decision_tree("classifier",tree.DecisionTreeClassifier(criterion='entropy', max_depth=8), x_train1, y_train1, x_test1, y_test1, letters_FINOP)
+    print("\nNeuralNetwork")
+    neural_network("classifier",MLPClassifier(), x_train1, y_train1, x_test1, y_test1)"""
 
     # SPLIT, TRAIN, TEST - ALGOS ON DATASET 2
-    x_train2, y_train2, x_test2, y_test2 = split_data(dataCCfinal_2, 'Z')
-    print("KNeighborsRegressor")
+    x_train2, y_train2, x_test2, y_test2 = split_data(dataCCfinal_2_DIJMN, 'Z')
+    print("\nKNeighborsRegressor")
     k_neighbors("regressor", KNeighborsRegressor(), x_train2, y_train2, x_test2, y_test2)
-    #print("TreeRegressor")
-    #letters_DIJMN = ['D', 'I', 'J', 'M', 'N']
-    #decision_tree( tree.DecisionTreeRegressor(min_impurity_decrease=0.02, max_depth=5), x_train2, y_train2, x_test2, y_test2,letters_DIJMN)
-    #print("NeuralNetworkRegressor")
-    #neural_network(MLPRegressor(), x_train2, y_train2, x_test2, y_test2)
+    print("\nTreeRegressor")
+    letters_DIJMN = ['D', 'I', 'J', 'M', 'N']
+    decision_tree("regressor", tree.DecisionTreeRegressor(min_impurity_decrease=0.02, max_depth=5), x_train2, y_train2,
+                  x_test2, y_test2, letters_DIJMN)
+    print("\nNeuralNetworkRegressor")
+    neural_network("regressor", MLPRegressor(), x_train2, y_train2, x_test2, y_test2)

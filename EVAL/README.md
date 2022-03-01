@@ -134,3 +134,26 @@ Test score 0.8709677419354839
 ![imgs/correlation_matrix_data_1.png](imgs/correlation_matrix_data_2.png)
 
 Les colonnes le plus en coorélation avec Z sont : D,I,J,M,N
+
+```
+KNeighborsRegressor
+Coefficient of determination: 0.9997814838189416
+MAE: 1.1513233601841193
+MSE: 7.122032988108934
+MAE (training): 0.9413399095766538
+MSE (training): 3.628103575832304
+
+TreeRegressor
+Coefficient of determination: 0.9833782285283071
+MAE: 15.681897559640811
+MSE: 541.7484607722189
+MAE (training): 14.717368275690667
+MSE (training): 479.0517767122878
+
+NeuralNetworkRegressor
+Coefficient of determination: 0.9999998230723951
+MAE: 0.05010888487033955
+MSE: 0.00576654887790031
+MAE (training): 0.049970732655157224
+MSE (training): 0.005360224208057769
+```

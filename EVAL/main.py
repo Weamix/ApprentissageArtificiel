@@ -29,7 +29,7 @@ def matrix_correlation(data):
     plt.figure(figsize=(15, 8))
     plt.hist(data)
     print(data.shape)
-    sns.heatmap(data.corr(), vmax=0.5, cmap="PiYG")
+    sns.heatmap(data.corr(), vmax=0.5, cmap="PiYG", annot=True)
     plt.title('Correlation matrix')
     plt.show()
 

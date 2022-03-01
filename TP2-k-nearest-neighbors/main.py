@@ -88,7 +88,7 @@ def auto():
 
 
 if __name__ == '__main__':
-    '''Commented part 1 TP2 : Iris
+    '''Commented part 1 TP2-k-nearest-neighbors : Iris
     
     Combien d'exemples : 150
     Combien de classes (species) : 3 classes
@@ -98,7 +98,7 @@ if __name__ == '__main__':
       '''
     #iris()
 
-    '''part 2 TP2 : Auto
+    '''part 2 TP2-k-nearest-neighbors : Auto
         392 exemples
         0 classes car on est en régression
         7 caractéristiques avec y=mp

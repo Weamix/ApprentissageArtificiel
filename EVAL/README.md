@@ -120,4 +120,9 @@ Train score: 0.8571428571428571, Test score 0.8709677419354839
  [ 0  2  1  0  0  0  1]]
 ```
 
+Quand le Train score > Test score => il y a surapprentissage
+Donc garder les colonnes ['F', 'I', 'N', 'O', 'P'] est mieux pour le NeuralNetwork et pour KNeighborsClassifier
+mais pour TreeClassifier, il y a un surapprentissage
+avec ['F', 'G', 'I', 'L', 'N', 'Q'], ce n'est pas le cas
+
 ### Matrice de corélation - dataCCfinal_2 - Cas de régression

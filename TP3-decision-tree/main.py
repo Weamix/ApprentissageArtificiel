@@ -64,7 +64,7 @@ def analyze(data, type):
     
     Bases de train et de test  => pour éviter le surapprentissage (= généralisation)
     
-    Train score > Test score => il y a surapprentissage
+·
     K plus proche voisins , on rajoute des voisins
     Arbres de décisions => on élague
     

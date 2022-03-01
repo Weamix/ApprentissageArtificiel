@@ -139,7 +139,7 @@ if __name__ == '__main__':
     k_neighbors("classifier", KNeighborsClassifier(), x_train1, y_train1, x_test1, y_test1)
     print("TreeClassifier")
     letters_FINOP = ['F', 'I', 'N', 'O', 'P']
-    #letters_FGILNQ=['F', 'G', 'I', 'L', 'N', 'Q']
+    #letters_FGILNQ= ['F', 'G', 'I', 'L', 'N', 'Q']
     decision_tree(tree.DecisionTreeClassifier(criterion='entropy', max_depth=8), x_train1, y_train1, x_test1, y_test1, letters_FINOP)
     print("NeuralNetwork")
     neural_network(MLPClassifier(), x_train1, y_train1, x_test1, y_test1)

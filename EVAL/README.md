@@ -8,6 +8,11 @@ Using python
 
 Click right on the file and select `Run` on Pycharm ;-)
 
+```
+cd EVAL
+python main.py
+```
+
 ## Explications/choix
 
 ### Analyze data : 
